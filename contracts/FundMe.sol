@@ -66,10 +66,18 @@ contract FundMe {
     }
 
     receive() external payable {
+        console.log(
+            "*********INSIDE receive()***************, MSG.VALUE IS: %s",
+            msg.value
+        );
         fund();
     }
 
     fallback() external payable {
+        console.log(
+            "*********INSIDE fallback()***************, MSG.VALUE IS: %s",
+            msg.value
+        );
         fund();
     }
 
@@ -86,6 +94,10 @@ contract FundMe {
         //     revert FundMe__MinEthNotMet();
         // }
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
+        console.log(
+            "*********INSIDE FUND()***************, MSG.VALUE IS: %s",
+            msg.value
+        );
         s_addressToAmountFunded[msg.sender] += msg.value;
         s_funders.push(msg.sender);
     }
